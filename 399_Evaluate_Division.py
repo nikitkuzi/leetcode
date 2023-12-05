@@ -1,11 +1,30 @@
 class Solution:
-    def calcEquation(self, equations: list[list[str]], values: list[float], queries: list[list[str]]) -> list[float]:
-        pass
+    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        def buildGraph(eq,val):
+            graph = defaultdict(dict)
+            for (dividend, divisor),v in zip(eq,val):
+                graph[dividend][divisor] = v
+                graph[divisor][dividend] = 1/v
+            return graph
+        def bfs(start, end, graph):
+            q = deque()
+            q.append((start,1.0))
+            visited = set()
+            while q:
+                node,val = q.popleft()
+                if node == end:
+                    return val
+                visited.add(node)
+                for connected, weight in graph[node].items():
+                    if connected not in visited:
+                        q.append([connected,val*weight])
+            return -1
+        ans = []
+        graph = buildGraph(equations,values)
+        for dividend, divisor in queries:
+            if dividend not in graph or divisor not in graph:
+                ans.append(-1)
+            else:
+                ans.append(bfs(dividend,divisor,graph))
 
-
-equations =[["x1","x2"],["x2","x3"],["x3","x4"],["x4","x5"]]
-values =[3.0,4.0,5.0,6.0]
-queries =[["x1","x5"],["x5","x2"],["x2","x4"],["x2","x2"],["x2","x9"],["x9","x9"]]
-Expected = [360.00000,0.00833,20.00000,1.00000,-1.00000,-1.00000]
-test = Solution()
-print(test.calcEquation(equations, values, queries))
+        return ans

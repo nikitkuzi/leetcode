@@ -4,7 +4,7 @@ class Solution:
         vovels = set("aeuoi")
         for i in range(k):
             if s[i] in vovels:
-                c+=1
+                c+= 1
         mx = c
         for i in range(k,len(s)):
             if s[i] in vovels:

@@ -11,6 +11,6 @@ class Solution:
                 c+=1
             if s[i-k] in vovels:
                 c-=1
-            if c>mx:
+            if c > mx:
                 mx = c
         return mx

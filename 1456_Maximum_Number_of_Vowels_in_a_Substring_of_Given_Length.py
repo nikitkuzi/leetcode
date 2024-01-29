@@ -14,3 +14,8 @@ class Solution:
             if c > mx:
                 mx = c
         return mx
+
+d = dict(one = 1, two = 2, three = "3", four = "4")
+d2 = {2: "неудовлетворительно", 3: "удовлетворительно", 'four': "хорошо", 5: "отлично"}
+d.update(d2)
+print(d,d2)

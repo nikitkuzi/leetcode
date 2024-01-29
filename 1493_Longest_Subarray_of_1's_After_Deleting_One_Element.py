@@ -6,7 +6,7 @@ class Solution:
         ans = 0
         for r in range(n):
             if nums[r] == 0:
-                zeros += 1
+                zeros+= 1
             while zeros > 1:
                 if nums[l] == 0:
                     zeros -= 1

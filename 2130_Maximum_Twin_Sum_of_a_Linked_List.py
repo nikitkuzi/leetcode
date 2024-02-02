@@ -14,7 +14,7 @@ class Solution:
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-            curr.next, prev, curr = prev, curr, curr.next
+            curr.next, prev, curr  = prev, curr, curr.next
         # curr.next,prev,curr = prev,curr,curr.next
         mx = float(-inf)
         while prev:

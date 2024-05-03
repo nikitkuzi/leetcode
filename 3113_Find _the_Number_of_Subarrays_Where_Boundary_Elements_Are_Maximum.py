@@ -1,7 +1,5 @@
 class Solution:
     def numberOfSubarrays(self, nums: List[int]) -> int:
-        class Solution:
-    def numberOfSubarrays(self, nums: List[int]) -> int:
         st = deque()
         ans = 0
         for x in nums:

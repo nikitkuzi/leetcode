@@ -5,7 +5,6 @@ class Trie:
         self.children = {}
         self.smallest_descendent = None
         self.build(words)
-
     def build(self, words):
         # print(words, list(map(lambda x: self.index[x], words)))
         if len(words) == 1:

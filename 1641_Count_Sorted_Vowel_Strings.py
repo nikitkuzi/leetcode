@@ -11,6 +11,7 @@
 #                 f(level+1, i)
 #         f(1,0)
 #         return ans
+import pytest
 class Solution:
     def countVowelStrings(self, n: int) -> int:
         if (n == 1):
@@ -37,3 +38,6 @@ class Solution:
             lmt.append(ct)
             # print(lmt,lst)
         return lmt[-1]
+
+def test_fun():
+    assert 2+2==5

@@ -14,3 +14,4 @@ class Solution:
             if i not in deleted:
                 ans+=s[i]
         return ans
+

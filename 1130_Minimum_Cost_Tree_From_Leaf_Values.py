@@ -27,3 +27,4 @@ class Solution:
         while len(stack) > 2:
             res += stack.pop() * stack[-1]
         return res
+    hash()

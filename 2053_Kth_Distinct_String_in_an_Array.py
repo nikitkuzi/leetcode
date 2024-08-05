@@ -6,5 +6,6 @@ class Solution:
         for w in arr:
             if seen[w] == 1:
                 n.append(w)
-        # print(n[k-1])
-        return "" if k > len(n) else n[k-1]
+            if len(n) == k:
+                return w
+        return ""

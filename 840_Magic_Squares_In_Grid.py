@@ -12,7 +12,7 @@ class Solution:
                 r1 = sum(grid[i][j:j + 3])
                 r2 = sum(grid[i + 1][j:j + 3])
                 r3 = sum(grid[i + 2][j:j + 3])
-                if r1 != r2 or r2 != r3 or len(s) != 9:
+                if r1 != r2 or r2 != r3 or len(s) != 9 or (max(s) > 9 and min(s) < 1):
                     continue
                 c1 = grid[i][j] + grid[i + 1][j] + grid[i + 2][j]
                 c2 = grid[i][j + 1] + grid[i + 1][j + 1] + grid[i + 2][j + 1]

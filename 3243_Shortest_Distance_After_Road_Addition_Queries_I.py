@@ -26,3 +26,5 @@ class Solution:
                             q.append(next_node)
 
             ans.append(d[-1])
+
+        return ans

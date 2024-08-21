@@ -1,26 +1,28 @@
 class Solution:
-    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        graph = defaultdict(list)
-        res = []
-
-        def bfs():
-            visited = set()
-            q = deque()
-            q.append([0, 0])
-            while q:
-                node, dist = q.popleft()
-                if node == (n - 1):
-                    return dist
-                visited.add(node)
-                for nghb in graph[node]:
-                    if nghb not in visited:
-                        q.append([nghb, dist + 1])
+    def shortestDistanceAfterQueries(self, n, queries):
+        adj = [[] for _ in range(n)]
 
         for i in range(n - 1):
-            graph[i].append(i + 1)
-            graph[i + 1].append(i)
-        for u, v in queries:
-            graph[u].append(v)
-            graph[v].append(u)
-            res.append(bfs())
-        return res
+            adj[i].append(i + 1)
+
+        d = [i for i in range(n)]
+        ans = []
+
+        for query in queries:
+            from_node = query[0]
+            to_node = query[1]
+            adj[from_node].append(to_node)
+
+            if d[from_node] + 1 < d[to_node]:
+                q = deque([to_node])
+                d[to_node] = d[from_node] + 1
+
+                while q:
+                    v = q.popleft()
+
+                    for next_node in adj[v]:
+                        if d[v] + 1 < d[next_node]:
+                            d[next_node] = d[v] + 1
+                            q.append(next_node)
+
+            ans.append(d[-1])

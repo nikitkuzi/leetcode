@@ -13,18 +13,12 @@ class Solution:
                 exp[i][0] = int(spl[i][1:])
         # print(exp)
         den = lcm(*[a[1] for a in exp])
-        # den = 1
-        # for i in range(len(exp)):
-        #     den *= exp[i][1]
         # print(den)
-        # num = 0
-        # for i in range(len(exp)):
-        #     exp[i][0] *= (den // exp[i][1])
-        #     num += exp[i][0]
+        for i in range(len(exp)):
+            exp[i][0] *= (den // exp[i][1])
         # print(exp)
         num = sum([a[0] for a in exp])
         if num % den == 0:
             return str(num//den)+"/1"
         gc = gcd(num, den)
         return str(num//gc)+"/"+str(den//gc)
-

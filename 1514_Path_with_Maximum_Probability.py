@@ -37,3 +37,43 @@ class Solution:
                 break
 
         return dist[end]
+
+
+# n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2
+class Solution:
+    def dijkstras(self, graph, start, end):
+        visited = set()
+        heap = [(-1, start)]
+
+        while heap:
+            val, node = heappop(heap)
+            val = -val
+
+            if node == end:
+                return val
+
+            if node in visited:
+                continue
+
+            visited.add(node)
+            for neigh_val, neigh_node in graph[node]:
+                if neigh_node not in visited:
+                    heappush(heap, (-val * neigh_val, neigh_node))
+
+        return 0
+
+    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start_node: int,
+                       end_node: int) -> float:
+        '''
+        1 path = use dijkstras
+        '''
+        dict_graph = defaultdict(list)
+
+        for e in range(len(edges)):
+            i, j = edges[e]
+            k = succProb[e]
+
+            dict_graph[i].append((k, j))
+            dict_graph[j].append((k, i))
+
+        return self.dijkstras(dict_graph, start_node, end_node)

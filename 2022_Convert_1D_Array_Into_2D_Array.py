@@ -7,6 +7,6 @@ class Solution:
 
         for i in range(m):
             for j in range(n):
-                res[i][j] = original[i * n + j]
+                res[i][j] = original[i *n + j]
 
         return res

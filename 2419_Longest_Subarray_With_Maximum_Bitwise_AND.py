@@ -9,7 +9,8 @@ class Solution:
                 mx_len = 1
                 l = r
             elif nums[r] == mx:
-                mx_len = max(mx_len, r-l+1)
+                mx_len = max(mx_len, r - l + 1)
+
             else:
-                l = r
+                l = r + 1
         return mx_len

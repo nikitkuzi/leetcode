@@ -15,7 +15,7 @@ class Solution:
         for i, c in enumerate(s):
             # If the character is a vowel, update the bitmask
             if c in vowels:
-                mask ^= vowels[c]
+                mask ^=vowels[c]
 
             # If the bitmask has been seen before, calculate the length of the substring
             if mask in first_occurrence:

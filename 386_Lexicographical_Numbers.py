@@ -1,17 +1,40 @@
 class Solution:
     def lexicalOrder(self, n: int) -> List[int]:
-        res = []
+        result = []
+        current = 1
 
-        def f(curr):
-            for i in range(10):
-                number = curr + str(i)
-                number_int = int(number)
-                if number_int <= n:
-                    if number[0] != "0":
-                        res.append(number_int)
-                        f(number)
-                else:
-                    break
+        for _ in range(n):
+            result.append(current)
+            current = self.get_next_number(current, n)
 
-        f("")
-        return res
+        return result
+
+    def get_next_number(self, current: int, n: int) -> int:
+        if current * 10 <= n:
+            return current * 10  # Move to the next "level" in the lexicographical order
+
+        if current >= n:
+            current //= 10  # Go back to the parent node
+
+        current += 1  # Increment to get to the next number
+
+        while current % 10 == 0:
+            current //= 10  # Remove trailing zeros
+
+        return current
+# class Solution:
+#     def lexicalOrder(self, n: int) -> List[int]:
+#         res = []
+
+#         def f(curr):
+#             for i in range(10):
+#                 number = curr+str(i)
+#                 number_int = int(number)
+#                 if number_int <= n:
+#                     if number[0] != "0":
+#                         res.append(number_int)
+#                         f(number)
+#                 else:
+#                     break
+#         f("")
+#         return res

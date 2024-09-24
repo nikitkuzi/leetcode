@@ -27,7 +27,6 @@ class Solution:
                         curr_trie = curr_trie[char]
                         mx = max(curr, mx)
                     else:
-                        curr = 0
                         break
                 print("end")
             return mx

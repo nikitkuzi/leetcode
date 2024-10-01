@@ -1,6 +1,6 @@
 class Solution:
     def canArrange(self, arr: List[int], k: int) -> bool:
-        rem = defaultdict(int)
+        rem = [0]*k
         res = True
         for n in arr:
             rem[n%k]+=1

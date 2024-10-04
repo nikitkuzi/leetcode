@@ -13,7 +13,7 @@ class Solution:
         for k, v in d.items():
             if v == -1:
                 continue
-            if target - k not in d or target-k == -1 or v != d[target-k]:
+            if v != d[target-k]:
                 return -1
             if k == target/2:
                 # print("here")

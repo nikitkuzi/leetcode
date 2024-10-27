@@ -4,7 +4,7 @@ class Solution:
         result = []
         prev = ''
         for path in folder:
-            if not prev or not path.startswith(prev + '/'):
+            if not prev or not path.startswith(prev +'/'):
                 result.append(path)
                 prev = path  # Update 'prev' to the current folder
         return result

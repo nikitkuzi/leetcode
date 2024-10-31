@@ -13,6 +13,5 @@ class Solution:
                     if check(x+dx, y+dy) and grid[x][y] < grid[x+dx][y+dy]:
                         curr = max(dp[x+dx][y+dy]+1, curr)
                 dp[x][y] = curr
-        # for d in dp:
-            # print(d)
+
         return max([dp[x][0] for x in range(n)])

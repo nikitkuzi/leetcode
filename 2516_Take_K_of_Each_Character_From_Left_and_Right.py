@@ -1,13 +1,21 @@
 class Solution:
-    def takeCharacters(self,s,k):
-        d={c:s.count(c)-k for c in'abc'}
-        if min(d.values())<0:
-            return-1
-        h,m,l={c:0 for c in'abc'},0,0
-        for r,c in enumerate(s):
-            h[c]+=1
-            while h[c]>d[c]:
-                h[s[l]]-=1
-                l+=1
-            m=max(m,r-l+1)
-        return len(s)-m
+    def takeCharacters(self, s: str, k: int) -> int:
+        # Total counts
+        count = [0, 0, 0]
+        for c in s:
+            count[ord(c) - ord('a')] += 1
+
+        if min(count) < k:
+            return -1
+
+        # Sliding Window
+        res = float("inf")
+        l = 0
+        for r in range(len(s)):
+            count[ord(s[r]) - ord('a')] -= 1
+
+            while min(count) < k:
+                count[ord(s[l]) - ord('a')] += 1
+                l += 1
+            res = min(res, len(s) - (r - l + 1))
+        return res

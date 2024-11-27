@@ -1,30 +1,19 @@
 class Solution:
-    def shortestDistanceAfterQueries(self, n, queries):
-        adj = [[] for _ in range(n)]
+    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
+        graph = defaultdict(set)
+        for i in range(n-1):
+            graph[i].add(i+1)
+        dist = [i for i in range(n)]
 
-        for i in range(n - 1):
-            adj[i].append(i + 1)
-
-        d = [i for i in range(n)]
-        ans = []
-
-        for query in queries:
-            from_node = query[0]
-            to_node = query[1]
-            adj[from_node].append(to_node)
-
-            if d[from_node] + 1 < d[to_node]:
-                q = deque([to_node])
-                d[to_node] = d[from_node] + 1
-
-                while q:
-                    v = q.popleft()
-
-                    for next_node in adj[v]:
-                        if d[v] + 1 < d[next_node]:
-                            d[next_node] = d[v] + 1
-                            q.append(next_node)
-
-            ans.append(d[-1])
-
-        return ans
+        def f(node, curr):
+            dist[node] = curr
+            for nghb in graph[node]:
+                if dist[nghb] > curr+1:
+                    f(nghb, curr+1)
+        res = []
+        for u, v in queries:
+            graph[u].add(v)
+            if dist[u]+1 < dist[v]:
+                f(v, dist[u]+1)
+            res.append(dist[n-1])
+        return res

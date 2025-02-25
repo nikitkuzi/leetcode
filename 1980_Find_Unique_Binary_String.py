@@ -1,3 +1,6 @@
+from functools import cache
+
+
 class Solution:
     def findDifferentBinaryString(self, nums):
         result = []

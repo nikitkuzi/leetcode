@@ -1,0 +1,23 @@
+class Solution:
+    def minimumCost(self, source: str, target: str, original: List[str], changed: List[str], cost: List[int]) -> int:
+       
+        g = [[inf for i in range(26)] for j in range(26)]
+        shift = ord("a")
+        for u,v,w in zip(original, changed,cost):
+            g[ord(u)-shift][ord(v)-shift] = min(w, g[ord(u)-shift][ord(v)-shift]) 
+        
+        for k in range(26):
+            for i in range(26):
+                for j in range(26):
+                    if g[i][k] != inf and g[k][j] != inf:
+                        g[i][j] = min(g[i][j], g[i][k]+g[k][j])
+
+        
+        res = 0
+        for s,t in zip(source, target):
+            if s == t:
+                continue
+            if g[ord(s)-shift][ord(t)-shift] == inf:
+                return -1
+            res += g[ord(s)-shift][ord(t)-shift]
+        return res

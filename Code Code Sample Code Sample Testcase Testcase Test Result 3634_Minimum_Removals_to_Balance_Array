@@ -1,0 +1,17 @@
+class Solution:
+    def minRemoval(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        # res = 0
+        res = inf
+        l = 0
+        r = 0
+        # print(nums)
+        n = len(nums)
+        while l <= r and l < n:
+            while r < n and nums[r] <= k* nums[l]:
+                r += 1
+            res = min(res, n-(r-l))
+            l+=1
+
+            
+        return res

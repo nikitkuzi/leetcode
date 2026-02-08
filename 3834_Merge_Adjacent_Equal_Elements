@@ -1,0 +1,10 @@
+class Solution:
+    def mergeAdjacent(self, nums: List[int]) -> List[int]:
+        st = []
+        for n in nums:
+            curr = n
+            while st and st[-1] == curr:
+                st.pop()
+                curr *= 2
+            st.append(curr)
+        return st

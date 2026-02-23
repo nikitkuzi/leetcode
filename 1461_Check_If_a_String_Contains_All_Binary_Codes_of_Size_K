@@ -1,0 +1,7 @@
+class Solution:
+    def hasAllCodes(self, s: str, k: int) -> bool:
+        seen = set()
+        for i in range(k, len(s)+1):
+            seen.add(s[i-k:i])
+            # print(s[i-k:i])
+        return len(seen) == 2**k

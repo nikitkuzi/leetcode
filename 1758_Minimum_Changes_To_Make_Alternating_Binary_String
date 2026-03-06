@@ -1,0 +1,14 @@
+class Solution:
+    def minOperations(self, s: str) -> int:
+        ones = 0
+        zeros = 0
+        po = 0
+        pz = 1
+        for c in s:
+            if int(c) == po:
+                ones += 1
+            if int(c) == pz:
+                zeros += 1
+            po ^= 1
+            pz ^= 1
+        return min(ones, zeros)

@@ -1,0 +1,23 @@
+from typing import List
+
+class Solution:
+    def canPartitionGrid(self, grid: List[List[int]]) -> bool:
+        def is_valid(sums: List[int]) -> bool:
+            total = sum(sums)
+            if total % 2 != 0:
+                return False
+            
+            target = total//2
+            running_total = 0
+            for i in sums:
+                running_total += i
+                if running_total == target:
+                    return True
+            return False
+            
+
+        # Use lists to preserve duplicate sum values
+        row_sums = [sum(row) for row in grid]
+        col_sums = [sum(col) for col in zip(*grid)]
+        
+        return is_valid(row_sums) or is_valid(col_sums)

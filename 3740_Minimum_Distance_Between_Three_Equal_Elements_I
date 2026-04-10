@@ -1,0 +1,12 @@
+class Solution:
+    def minimumDistance(self, nums: List[int]) -> int:
+        c = defaultdict(list)
+
+        for i, n in enumerate(nums):
+            c[n].append(i)
+        mn = inf
+        for pos in c.values():
+            if len(pos) > 2:
+                for i in range(len(pos)-2):
+                    mn = min(mn, abs(pos[i]-pos[i+1]) + abs(pos[i]-pos[i+2]) + abs(pos[i+1]-pos[i+2]))
+        return mn if mn!=inf else -1

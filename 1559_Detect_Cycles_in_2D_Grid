@@ -1,0 +1,33 @@
+class Solution:
+    def containsCycle(self, grid: List[List[str]]) -> bool:
+        n = len(grid)
+        m = len(grid[0])
+        visited = [[0 for j in range(m)] for i in range(n)]
+        moves = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        prev_move = [1, 0, 3, 2]
+        def check(x,y):
+            return x >= 0 and y >= 0 and x < n and y < m
+        def f(x,y, move_num, num, seen):
+            visited[x][y] = num
+            for i, (dx,dy) in enumerate(moves):
+                if i == move_num:
+                    continue
+                if check(x+dx, y+dy):
+                    if grid[x+dx][y+dy] == grid[x][y]:
+                        if visited[x+dx][y+dy]!=0 and seen >= 3:
+                            return True
+                        else:
+                            if f(x+dx, y+dy, prev_move[i], num, seen+1):
+                                return True
+            return False
+        
+        cnt = 1
+        res = False
+        for x in range(n):
+            for y in range(m):
+                if visited[x][y]  == 0:
+                    if f(x,y, -1, cnt, 1):
+                        return True
+                    cnt += 1
+        return False
+

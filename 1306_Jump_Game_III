@@ -1,0 +1,24 @@
+class Solution:
+    def canReach(self, arr: List[int], start: int) -> bool:
+        q = deque()
+        n = len(arr)
+        visited = [0]*n
+        q.append(start)
+        while q:
+            pos = q.popleft()
+            if visited[pos]:
+                continue
+            visited[pos] = 1
+            pos_l = pos-arr[pos]
+            pos_r = pos+arr[pos]
+            if pos_r < n:
+                if arr[pos_r] == 0:
+                    return True
+                if not visited[pos_r]:
+                    q.append(pos_r)
+            if pos_l >= 0:
+                if arr[pos_l] == 0:
+                    return True
+                if not visited[pos_l]:
+                    q.append(pos_l)
+        return False

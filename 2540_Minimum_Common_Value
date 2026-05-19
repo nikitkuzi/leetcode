@@ -1,0 +1,53 @@
+# class Solution:
+#     def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
+#         l,r = 0, 0
+#         n = len(nums1)
+#         m = len(nums2)
+#         while l < n and r < m:
+#             if nums1[l] == nums2[r]:
+#                 return nums1[l]
+#             if nums1[l] < nums2[r]:
+#                 l+=1
+#             else:
+#                 r+=1
+            
+#         if l == n:
+#             while r < m:
+#                 if nums1[-1] == nums2[r]:
+#                     return nums1[-1]
+#                 r+=1
+#         else:
+#             while l < n:
+#                 if nums1[l] == nums2[-1]:
+#                     return nums1[l]
+#                 l+=1
+#         return -1
+class Solution:
+    def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
+
+        def binary_search(target, nums):
+            left = 0
+            right = len(nums) - 1
+            while left <= right:
+                mid = left + (right - left) // 2
+                if nums[mid] > target:
+                    right = mid - 1
+                elif nums[mid] < target:
+                    left = mid + 1
+                else:
+                    return True
+            return False 
+        
+        # Binary search should be done on the larger array
+        # If nums1 is longer, call getCommon with the arrays swapped
+        if len(nums1) > len(nums2): 
+            return self.getCommon(nums2, nums1)
+
+        # Search for each element of nums1 in nums2
+        # Return the first common element found
+        for num in nums1:
+            if binary_search(num, nums2):
+                return num
+
+        # Return -1 if there are no common elements
+        return -1

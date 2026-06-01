@@ -1,0 +1,13 @@
+class Solution:
+    def minimumCost(self, cost: List[int]) -> int:
+        cost.sort(reverse=True)
+        res = 0
+        i = 0
+        n = len(cost)
+        while i < n:
+            if i%3 == 2:
+                i+=1
+                continue
+            res+=cost[i]
+            i+=1
+        return res

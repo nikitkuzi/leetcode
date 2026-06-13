@@ -1,0 +1,8 @@
+class Solution:
+    def mapWordWeights(self, words: List[str], weights: List[int]) -> str:
+        lettrs = {i:char for i, char in enumerate(string.ascii_lowercase[::-1])}
+        res = ''
+        shift = ord("a")
+        for word in words:
+            res+= lettrs[sum(weights[ord(char)-shift] for char in word)%26]
+        return res

@@ -1,0 +1,7 @@
+class Solution:
+    def maxNumberOfBalloons(self, text: str) -> int:
+        c = Counter(text)
+        word = "balon"
+        c['o']//=2
+        c['l']//=2
+        return min(c[char] for char in word)

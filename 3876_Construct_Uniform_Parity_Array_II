@@ -1,0 +1,8 @@
+class Solution:
+    def uniformArray(self, nums1: list[int]) -> bool:
+        mn = min(nums1)
+        delim = mn % 2
+        for n in nums1:
+            if n % 2 != delim and (n - mn) % 2 != delim:
+                return False
+        return True

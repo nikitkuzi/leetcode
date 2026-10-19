@@ -1,0 +1,6 @@
+class Solution:
+    def targetIndices(self, nums: list[int], target: int) -> list[int]:
+        nums.sort()
+        pos_l = bisect.bisect_left(nums, target)
+        pos_r = bisect.bisect_right(nums, target)
+        return list(range(pos_l, pos_r))
